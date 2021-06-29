@@ -72,6 +72,7 @@ class Game:
         if valid_point(g4_p):
             self.g4 = g4_p
 
+        self.score += 1
         self.clock.tick(FPS)
         return self.pac in (self.g1, self.g2, self.g3, self.g4)
 
@@ -102,14 +103,4 @@ class Game:
             pygame.display.flip()
 
     def get_state(self):
-        return self.pac, self.g1, self.g2, self.g3, self.g4
-
-    def game_over(self):
-        image = pygame.image.load("game_over_pac.png")
-        image = pygame.transform.scale(image, (W*BLOCK_SIZE, H*BLOCK_SIZE))
-        self.display.blit(image, (0, 0))
-        text = FONT.render(f"score: {self.score}", True, YELLOW)
-        self.display.blit(text, ((W*BLOCK_SIZE-text.get_rect().width)/2, (H-2)*BLOCK_SIZE))
-        pygame.display.flip()
-        while pygame.K_q not in map((lambda x: None if x.type != pygame.KEYDOWN else x.key), pygame.event.get()):
-            pass
+        return (self.pac, self.g1, self.g2, self.g3, self.g4)
