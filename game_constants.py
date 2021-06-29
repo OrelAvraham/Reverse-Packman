@@ -57,21 +57,26 @@ G4_COLOR = (255, 184, 82)
 
 # Blocks
 BLOCK_SIZE = 16
+PAC_BLOCK = 9
+G1_BLOCK = 1
+G2_BLOCK = 2
+G3_BLOCK = 3
+G4_BLOCK = 4
 
 # FPS
 FPS = 8
 
 # Places
-PAC = ((W - 1) // 2, (H - 1) // 2)
+PAC = ((W - 1) // 2, (H - 2) // 2)
 G1 = (1, 1)
-G2 = (1, H - 1)
-G3 = (W - 1, 1)
-G4 = (W - 1, H - 1)
+G2 = (1, H - 2)
+G3 = (W - 2, 1)
+G4 = (W - 2, H - 2)
 
 
 # Functions
 
 def valid_point(p):
     x, y = p
-    return BOARD[y][x] == 0
+    return 0 <= x < W and 0 <= y < H and BOARD[y][x] == 0
 
