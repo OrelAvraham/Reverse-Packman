@@ -23,7 +23,7 @@ class Game:
         self.g4 = G4
         self.g4_dir = STAY
 
-        self.turn = 0
+        self.score = 0
 
     def step(self, a_pac, a1, a2, a3, a4):
         # TODO: add teleportation to the the game using modulus when calculating new position
@@ -73,6 +73,7 @@ class Game:
             self.g4 = g4_p
 
         self.clock.tick(FPS)
+        return self.pac in (self.g1, self.g2, self.g3, self.g4)
 
     def draw(self):
 
@@ -100,11 +101,15 @@ class Game:
 
             pygame.display.flip()
 
+    def get_state(self):
+        return self.pac, self.g1, self.g2, self.g3, self.g4
 
-    def get_board(self):
-        b = BOARD.copy()
-        x_pac, y_pac = self.pac
-        x1, y2 = self.g1
-        x2, y2 = self.g2
-        x3, y3 = self.g3
-        x4, y4 = self.g4
+    def game_over(self):
+        image = pygame.image.load("game_over_pac.png")
+        image = pygame.transform.scale(image, (W*BLOCK_SIZE, H*BLOCK_SIZE))
+        self.display.blit(image, (0, 0))
+        text = FONT.render(f"score: {self.score}", True, YELLOW)
+        self.display.blit(text, ((W*BLOCK_SIZE-text.get_rect().width)/2, (H-2)*BLOCK_SIZE))
+        pygame.display.flip()
+        while pygame.K_q not in map((lambda x: None if x.type != pygame.KEYDOWN else x.key), pygame.event.get()):
+            pass

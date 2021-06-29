@@ -4,5 +4,5 @@ from abc import ABC
 
 class Ghost(ABC):
 
-    def action(self, board):
-        ...
+    def action(self, state):
+        return STAY

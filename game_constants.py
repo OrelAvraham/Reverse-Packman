@@ -36,7 +36,15 @@ STAY = (0, 0)
 
 COMPASS_ROSE = [UP, RIGHT, DOWN, LEFT]
 
-# Color Constants
+# Blocks
+BLOCK_SIZE = 30
+PAC_BLOCK = 9
+G1_BLOCK = 1
+G2_BLOCK = 2
+G3_BLOCK = 3
+G4_BLOCK = 4
+
+# Aesthetics Constants
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -55,16 +63,10 @@ G2_COLOR = (255, 184, 255)
 G3_COLOR = (0, 255, 255)
 G4_COLOR = (255, 184, 82)
 
-# Blocks
-BLOCK_SIZE = 16
-PAC_BLOCK = 9
-G1_BLOCK = 1
-G2_BLOCK = 2
-G3_BLOCK = 3
-G4_BLOCK = 4
+FONT = pygame.font.Font("Pixelated_Regular.ttf", BLOCK_SIZE)
 
 # FPS
-FPS = 8
+FPS = 6
 
 # Places
 PAC = ((W - 1) // 2, (H - 2) // 2)
