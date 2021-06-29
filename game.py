@@ -11,17 +11,17 @@ class Game:
         self.pac = PAC
         self.pac_dir = STAY
 
-        self.g1 = G1
-        self.g1_dir = STAY
+        self.blinky = BLINKY
+        self.blinky_dir = STAY
 
-        self.g2 = G2
-        self.g2_dir = STAY
+        self.pinky = PINKY
+        self.pinky_dir = STAY
 
-        self.g3 = G3
-        self.g3_dir = STAY
+        self.inky = INKY
+        self.inky_dir = STAY
 
-        self.g4 = G4
-        self.g4_dir = STAY
+        self.clyde = CLYDE
+        self.clyde_dir = STAY
 
         self.score = 0
 
@@ -38,43 +38,43 @@ class Game:
 
         # Move ghost1
         if a1 in COMPASS_ROSE:
-            self.g1_dir = a1
+            self.blinky_dir = a1
         else:
-            self.g1_dir = STAY
-        g1_p = ((self.g1[0] + self.g1_dir[0]) % W, (self.g1[1] + self.g1_dir[1]) % H)
-        if valid_point(g1_p):
-            self.g1 = g1_p
+            self.blinky_dir = STAY
+        blinky_p = ((self.blinky[0] + self.blinky_dir[0]) % W, (self.blinky[1] + self.blinky_dir[1]) % H)
+        if valid_point(blinky_p):
+            self.blinky = blinky_p
 
         # Move ghost 2
         if a2 in COMPASS_ROSE:
-            self.g2_dir = a2
+            self.pinky_dir = a2
         else:
-            self.g2_dir = STAY
-        g2_p = ((self.g2[0] + self.g2_dir[0]) % W, (self.g2[1] + self.g2_dir[1]) % H)
-        if valid_point(g2_p):
-            self.g2 = g2_p
+            self.pinky_dir = STAY
+        pinky_p = ((self.pinky[0] + self.pinky_dir[0]) % W, (self.pinky[1] + self.pinky_dir[1]) % H)
+        if valid_point(pinky_p):
+            self.pinky = pinky_p
 
         # Move ghost3
         if a3 in COMPASS_ROSE:
-            self.g3_dir = a3
+            self.inky_dir = a3
         else:
-            self.g3_dir = STAY
-        g3_p = ((self.g3[0] + self.g3_dir[0]) % W, (self.g3[1] + self.g3_dir[1]) % H)
-        if valid_point(g3_p):
-            self.g3 = g3_p
+            self.inky_dir = STAY
+        inky_p = ((self.inky[0] + self.inky_dir[0]) % W, (self.inky[1] + self.inky_dir[1]) % H)
+        if valid_point(inky_p):
+            self.inky = inky_p
 
         # Move ghost4
         if a4 in COMPASS_ROSE:
-            self.g4_dir = a4
+            self.clyde_dir = a4
         else:
-            self.g4_dir = STAY
-        g4_p = ((self.g4[0] + self.g4_dir[0]) % W, (self.g4[1] + self.g4_dir[1]) % H)
-        if valid_point(g4_p):
-            self.g4 = g4_p
+            self.clyde_dir = STAY
+        clyde_p = ((self.clyde[0] + self.clyde_dir[0]) % W, (self.clyde[1] + self.clyde_dir[1]) % H)
+        if valid_point(clyde_p):
+            self.clyde = clyde_p
 
         self.score += 1
         self.clock.tick(FPS)
-        return self.pac in (self.g1, self.g2, self.g3, self.g4)
+        return self.pac in (self.blinky, self.pinky, self.inky, self.clyde)
 
     def draw(self):
 
@@ -87,20 +87,20 @@ class Game:
                 if (x, y) == self.pac:
                     pygame.draw.rect(self.display, PAC_COLOR,
                                      pygame.Rect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
-                if (x, y) == self.g1:
-                    pygame.draw.rect(self.display, G1_COLOR,
+                if (x, y) == self.blinky:
+                    pygame.draw.rect(self.display, BLINKY_COLOR,
                                      pygame.Rect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
-                if (x, y) == self.g2:
-                    pygame.draw.rect(self.display, G2_COLOR,
+                if (x, y) == self.pinky:
+                    pygame.draw.rect(self.display, PINKY_COLOR,
                                      pygame.Rect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
-                if (x, y) == self.g3:
-                    pygame.draw.rect(self.display, G3_COLOR,
+                if (x, y) == self.inky:
+                    pygame.draw.rect(self.display, INKY_COLOR,
                                      pygame.Rect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
-                if (x, y) == self.g4:
-                    pygame.draw.rect(self.display, G4_COLOR,
+                if (x, y) == self.clyde:
+                    pygame.draw.rect(self.display, CLYDE_COLOR,
                                      pygame.Rect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
 
             pygame.display.flip()
 
     def get_state(self):
-        return (self.pac, self.g1, self.g2, self.g3, self.g4)
+        return (self.pac, self.blinky, self.pinky, self.inky, self.clyde)

@@ -4,21 +4,21 @@ from ghost import *
 
 
 def main(display=pygame.display.set_mode((W * BLOCK_SIZE, H * BLOCK_SIZE)),
-         g1: Ghost = Ghost(),
-         g2: Ghost = Ghost(),
-         g3: Ghost = Ghost(),
-         g4: Ghost = Ghost()):
+         blinky: Ghost = Ghost(),
+         pinky: Ghost = Ghost(),
+         inky: Ghost = Ghost(),
+         clyde: Ghost = Ghost()):
     game: Game = Game(display)
     player: Player = Player()
     while 1:
         game.draw()
         action = player.action()
         state = game.get_state()
-        g1_act = g1.action(state)
-        g2_act = g2.action(state)
-        g3_act = g3.action(state)
-        g4_act = g4.action(state)
-        if game.step(action, g1_act, g2_act, g3_act, g4_act):
+        blinky_act = blinky.action(state)
+        pinky_act = pinky.action(state)
+        inky_act = inky.action(state)
+        clyde_act = clyde.action(state)
+        if game.step(action, blinky_act, pinky_act, inky_act, clyde_act):
             break
 
     image = pygame.image.load("media/game_over_pac.png")
@@ -37,4 +37,4 @@ def main(display=pygame.display.set_mode((W * BLOCK_SIZE, H * BLOCK_SIZE)),
 
 
 if __name__ == '__main__':
-    main(g1=G2(), g2=G1(), g3=G2(), g4=G1())
+    main(blinky=pinky(), pinky=blinky(), inky=pinky(), clyde=blinky())

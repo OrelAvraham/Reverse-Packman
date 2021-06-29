@@ -9,13 +9,13 @@ class Ghost(ABC):
         return STAY
 
 
-class G1(Ghost):
+class blinky(Ghost):
 
     def action(self, state):
         return random.choice(COMPASS_ROSE)
 
 
-class G2(Ghost):
+class pinky(Ghost):
 
     def __init__(self):
         self.last = STAY

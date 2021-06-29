@@ -39,10 +39,10 @@ COMPASS_ROSE = [UP, RIGHT, DOWN, LEFT]
 # Blocks
 BLOCK_SIZE = 16
 PAC_BLOCK = 9
-G1_BLOCK = 1
-G2_BLOCK = 2
-G3_BLOCK = 3
-G4_BLOCK = 4
+blinky_BLOCK = 1
+pinky_BLOCK = 2
+inky_BLOCK = 3
+clyde_BLOCK = 4
 
 # Aesthetics Constants
 BLACK = (0, 0, 0)
@@ -58,10 +58,10 @@ BRIGHT_PURPLE = (191, 64, 191)
 WALL_COLOR = BLUE
 EMPTY_COLOR = BLACK
 PAC_COLOR = YELLOW
-G1_COLOR = (255, 0, 0)
-G2_COLOR = (255, 184, 255)
-G3_COLOR = (0, 255, 255)
-G4_COLOR = (255, 184, 82)
+BLINKY_COLOR = (255, 0, 0)  # Red
+PINKY_COLOR = (255, 184, 255)  # Pink
+INKY_COLOR = (0, 255, 255)  # Aqua
+CLYDE_COLOR = (255, 184, 82)  # Orange
 
 FONT = pygame.font.Font('media/Pixelated_Regular.ttf', BLOCK_SIZE)
 
@@ -70,10 +70,10 @@ FPS = 8
 
 # Places
 PAC = ((W - 1) // 2, (H - 2) // 2)
-G1 = (1, 1)
-G2 = (1, H - 2)
-G3 = (W - 2, 1)
-G4 = (W - 2, H - 2)
+BLINKY = (1, 1)
+PINKY = (1, H - 2)
+INKY = (W - 2, 1)
+CLYDE = (W - 2, H - 2)
 
 
 # Functions
@@ -81,4 +81,3 @@ G4 = (W - 2, H - 2)
 def valid_point(p):
     x, y = p
     return 0 <= x < W and 0 <= y < H and BOARD[y][x] == 0
-
