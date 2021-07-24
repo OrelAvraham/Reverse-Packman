@@ -4,10 +4,10 @@ from ghost import *
 
 
 def main(display=pygame.display.set_mode((W * BLOCK_SIZE, H * BLOCK_SIZE)),
-         blinky: Ghost = Ghost(),
-         pinky: Ghost = Ghost(),
-         inky: Ghost = Ghost(),
-         clyde: Ghost = Ghost()):
+         blinky: Ghost = Ghost(BLINKY),
+         pinky: Ghost = Ghost(PINKY),
+         inky: Ghost = Ghost(INKY),
+         clyde: Ghost = Ghost(CLYDE)):
     game: Game = Game(display)
     player: Player = Player()
     while 1:
@@ -37,4 +37,8 @@ def main(display=pygame.display.set_mode((W * BLOCK_SIZE, H * BLOCK_SIZE)),
 
 
 if __name__ == '__main__':
-    main(blinky=pinky(), pinky=blinky(), inky=pinky(), clyde=blinky())
+    blinky = Blinky(BLINKY)
+    pinky = Blinky(PINKY)
+    inky = Blinky(INKY)
+    clyde = Blinky(CLYDE)
+    main(blinky=blinky, pinky=pinky, inky=inky, clyde=clyde)
