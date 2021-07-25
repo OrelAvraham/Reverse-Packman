@@ -74,7 +74,21 @@ class Game:
 
         self.score += 1
         self.clock.tick(FPS)
-        return self.pac in (self.blinky, self.pinky, self.inky, self.clyde)
+
+        game_over = None
+        if self.pac == self.blinky:
+            game_over = 1
+
+        if self.pac == self.pinky:
+            game_over = 2
+
+        if self.pac == self.inky:
+            game_over = 3
+
+        if self.pac == self.clyde:
+            game_over = 4
+
+        return game_over
 
     def draw(self):
 

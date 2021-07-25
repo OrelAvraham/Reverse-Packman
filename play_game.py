@@ -8,6 +8,7 @@ def main(display=pygame.display.set_mode((W * BLOCK_SIZE, H * BLOCK_SIZE)),
          pinky: Ghost = Ghost(PINKY),
          inky: Ghost = Ghost(INKY),
          clyde: Ghost = Ghost(CLYDE)):
+    ghosts = [blinky, pinky, inky, clyde]
     game: Game = Game(display)
     player: Player = Player()
     while 1:
@@ -18,7 +19,9 @@ def main(display=pygame.display.set_mode((W * BLOCK_SIZE, H * BLOCK_SIZE)),
         pinky_act = pinky.action(state)
         inky_act = inky.action(state)
         clyde_act = clyde.action(state)
-        if game.step(action, blinky_act, pinky_act, inky_act, clyde_act):
+        game_over = game.step(action, blinky_act, pinky_act, inky_act, clyde_act)
+        if game_over:
+            print(ghosts[game_over - 1])
             break
 
     image = pygame.image.load("media/game_over_pac.png")
@@ -37,8 +40,8 @@ def main(display=pygame.display.set_mode((W * BLOCK_SIZE, H * BLOCK_SIZE)),
 
 
 if __name__ == '__main__':
-    blinky = Blinky(BLINKY)
-    pinky = Blinky(PINKY)
-    inky = Blinky(INKY)
-    clyde = Blinky(CLYDE)
+    blinky = Random(BLINKY, name='blinky')
+    pinky = Random(PINKY, name='pinky')
+    inky = Random(INKY, name='inky')
+    clyde = Random(CLYDE, name='clyde')
     main(blinky=blinky, pinky=pinky, inky=inky, clyde=clyde)
