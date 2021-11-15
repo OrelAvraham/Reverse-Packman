@@ -35,6 +35,8 @@ class Game:
         pac_p = ((self.pac[0] + self.pac_dir[0]) % W, (self.pac[1] + self.pac_dir[1]) % H)
         if valid_point(pac_p):
             self.pac = pac_p
+        moved_into_occupied_space = self.is_over()
+
 
         # Move ghost1
         if a1 in COMPASS_ROSE:
@@ -75,20 +77,7 @@ class Game:
         self.score += 1
         self.clock.tick(FPS)
 
-        game_over = None
-        if self.pac == self.blinky:
-            game_over = 1
-
-        if self.pac == self.pinky:
-            game_over = 2
-
-        if self.pac == self.inky:
-            game_over = 3
-
-        if self.pac == self.clyde:
-            game_over = 4
-
-        return game_over
+        return self.is_over() if self.is_over() else moved_into_occupied_space
 
     def draw(self):
 
@@ -118,3 +107,19 @@ class Game:
 
     def get_state(self):
         return (self.pac, self.blinky, self.pinky, self.inky, self.clyde)
+
+    def is_over(self):
+        game_over = None
+        if self.pac == self.blinky:
+            game_over = 1
+
+        if self.pac == self.pinky:
+            game_over = 2
+
+        if self.pac == self.inky:
+            game_over = 3
+
+        if self.pac == self.clyde:
+            game_over = 4
+
+        return game_over

@@ -11,7 +11,7 @@ def main(display=pygame.display.set_mode((W * BLOCK_SIZE, H * BLOCK_SIZE)),
     ghosts = [blinky, pinky, inky, clyde]
     game: Game = Game(display)
     player: Player = Player()
-    while 1:
+    while "false":
         game.draw()
         action = player.action()
         state = game.get_state()
