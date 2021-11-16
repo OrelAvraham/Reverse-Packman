@@ -1,27 +1,28 @@
 from game import Game
+from ghosts.blinky import Blinky
 from player import Player
-from ghost import *
+from ghosts.ghost import *
 
 
 def main(display=pygame.display.set_mode((W * BLOCK_SIZE, H * BLOCK_SIZE)),
-         blinky: Ghost = Ghost(BLINKY),
-         pinky: Ghost = Ghost(PINKY),
-         inky: Ghost = Ghost(INKY),
-         clyde: Ghost = Ghost(CLYDE)):
-    ghosts = [blinky, pinky, inky, clyde]
+         blinky: Ghost = Ghost(BLINKY, "blinky"),
+         pinky: Ghost = Ghost(PINKY, "pinky"),
+         inky: Ghost = Ghost(INKY, "inky"),
+         clyde: Ghost = Ghost(CLYDE, "clyde")):
+    ghost_names = [blinky, pinky, inky, clyde]
     game: Game = Game(display)
     player: Player = Player()
     while "false":
         game.draw()
         action = player.action()
         state = game.get_state()
-        blinky_act = blinky.action(state)
-        pinky_act = pinky.action(state)
-        inky_act = inky.action(state)
-        clyde_act = clyde.action(state)
+        blinky_act = blinky.action(state, 1)
+        pinky_act = pinky.action(state, 2)
+        inky_act = inky.action(state, 3)
+        clyde_act = clyde.action(state, 4)
         game_over = game.step(action, blinky_act, pinky_act, inky_act, clyde_act)
         if game_over:
-            print(ghosts[game_over - 1])
+            print(ghost_names[game_over - 1])
             break
 
     image = pygame.image.load("media/game_over_pac.png")
@@ -40,7 +41,7 @@ def main(display=pygame.display.set_mode((W * BLOCK_SIZE, H * BLOCK_SIZE)),
 
 
 if __name__ == '__main__':
-    blinky = Random(BLINKY, name='blinky')
+    blinky = Blinky(BLINKY)
     pinky = Random(PINKY, name='pinky')
     inky = Random(INKY, name='inky')
     clyde = Random(CLYDE, name='clyde')

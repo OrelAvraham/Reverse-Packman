@@ -37,7 +37,6 @@ class Game:
             self.pac = pac_p
         moved_into_occupied_space = self.is_over()
 
-
         # Move ghost1
         if a1 in COMPASS_ROSE:
             self.blinky_dir = a1
@@ -106,7 +105,9 @@ class Game:
             pygame.display.flip()
 
     def get_state(self):
-        return (self.pac, self.blinky, self.pinky, self.inky, self.clyde)
+        return [{'loc': self.pac, 'last': self.pac_dir}, {'loc': self.blinky, 'last': self.blinky_dir},
+                {'loc': self.pinky, 'last': self.pinky_dir}, {'loc': self.inky, 'last': self.inky_dir},
+                {'loc': self.clyde, 'last': self.clyde_dir}]
 
     def is_over(self):
         game_over = None
